@@ -1,6 +1,6 @@
 <!-- MENU MENU MENU MENU MENU -->
   <?php $this->load->view('Global/header'); ?>
-  <?php $this->load->view('Global/menu',$modulos); ?>
+  <?php $this->load->view('Global/menu'); ?>
   <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 
   <!-- Content Wrapper. Contains page content -->
@@ -8,13 +8,14 @@
        <section class="content">
        	<div class="row">
        		<div class="clear">
-					 <?php
-						 foreach($modulos->result() as $modulo)
-						 {
-							echo "<br>" .$modulo->nombre;
-							echo "<br>" .$modulo->ruta;
-						 }
-					 ?>
+       			<br>
+       			<br>
+       			<br>
+       			<br>
+       			<br>
+       			<br>
+       			<br>
+       			<br>
        		</div>
             
             
