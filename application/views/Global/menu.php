@@ -11,7 +11,7 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">CATALOGOS</li>
+        <li class="header">MODULOS</li>
           <!--Menu-->
           <li><a href="<?php echo base_url();?>index.php/Inicio/formulario"><i class="fa fa-file"></i> <span>Titulo Electronico</span></a></li>
       	 
