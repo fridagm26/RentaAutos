@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @license	https://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
@@ -456,8 +456,11 @@ class CI_Upload {
 
 		$this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
-		$this->file_name = $this->_prep_filename($_file['name']);
-		$this->file_ext	 = $this->get_extension($this->file_name);
+		//Cambios por  http://www.diegodicamillo.com.ar/blog/2009/12/22/codeigniter-upload-de-archivos-con-enes-o-acentos/
+		//$this->file_name = $this->_prep_filename($_file['name']);
+		$this->file_name = $this->_prep_filename(htmlentities($_FILES[$field]['name']));
+		//$this->file_ext	 = $this->get_extension($this->file_name);
+		$this->file_ext	 = $this->get_extension(htmlentities($_FILES[$field]['name']));
 		$this->client_name = $this->file_name;
 
 		// Is the file type allowed to be uploaded?
