@@ -4,7 +4,7 @@
  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Titulo | Electronico</title>
+  <title> Renta de Autos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -35,9 +35,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>TE</b></span>
+        <span class="logo-mini"><b>RA</b></span>
       <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Titulo electronico</b></span>
+        <span class="logo-lg"><b>Renta Autos</b></span>
 
     </a>
     <!-- Header Navbar: style can be found in header.less -->
