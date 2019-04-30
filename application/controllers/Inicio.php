@@ -5,10 +5,12 @@ class Inicio extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-
+		$this->load->model('Modulos_model');
 	}
 	public function index()
 	{
-    $this->load->view('inicio');
-  }
+		$data['modulos'] = $this->Modulos_model->getModulos();
+    $this->load->view('inicio',$data);
+	}
+	
 }

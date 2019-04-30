@@ -13,9 +13,11 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MODULOS</li>
           <!--Menu-->
-          <li><a href="<?php echo base_url();?>index.php/Inicio/formulario"><i class="fa fa-file"></i> <span>Titulo Electronico</span></a></li>
-      	 
+          <?php foreach($modulos as $modulo){ ?>
+          <li><a href="<?php echo base_url($modulo->ruta);?>"><i class="fa fa-file"></i> <span><?php echo $modulo->nombre ?> </span></a></li>
+          <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->
+    <!-- <?php echo base_url($modulo->ruta);?> -->
   </aside>
