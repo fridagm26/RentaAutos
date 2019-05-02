@@ -17,7 +17,8 @@
        			<br>
        			<br>
        		</div>
-            <h1>hola</h1>
+            <h1>Aqui vamos a dar de alta a un carro</h1>
+            <a href="<?php echo base_url(); ?>index.php/cAutos">Link de eso</a>
             
          </div>
        </section>
