@@ -13,5 +13,6 @@ class Modulos_model extends CI_Model {
 	//ACABA VAN LAS FUNCIONES
 	public function getModulos(){
         return $this->db->where('status',1)->get('modulos')->result();
+        
     }
 }
