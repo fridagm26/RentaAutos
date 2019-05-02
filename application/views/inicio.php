@@ -17,7 +17,6 @@
        			<br>
        			<br>
        		</div>
-            <h1>hola</h1>
             
          </div>
        </section>
