@@ -8,10 +8,10 @@
        	<div class="row">
        		<div class="clear">
                 <body>
-                    <form action="index.php/Inicio/guardar" method="POST">
+                    <form action="http://localhost/RentaAutos/index.php/Inicio/guardar" method="POST">
                         <h3>Formulario de Renta</h3>
                         <label>Disponibilidad:<br></label>
-                        <input type="text" name="txtdisp" placeholder=""><br/> 
+                        <input type="int" name="disp" placeholder=""><br/> 
                         <label>Fecha de inicio:<br></label>
                         <input type="date" name="txtFI" min="2019-04-30"><br/>
                         <label>Fecha de fin:<br></label>
@@ -19,6 +19,9 @@
                         <label>Licencia Vigente:<br></label>
                         <input type="checkbox" name="txtsi" value="Si">Si
                         <input type="checkbox" name="txtno" value="No">No<br/>
+                        <label>Edad:<br></label>
+                        <input type="int" name="edad" placeholder=""><br/>
+                        <br><br/> 
                         <input type="submit" value="Insertar">
                     </form>
                 </body> 
