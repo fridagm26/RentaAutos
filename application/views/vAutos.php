@@ -69,20 +69,20 @@
   <div class="control-sidebar-bg"></div>
 </div>
 
-<!-- <script>
+<script>
     $(document).ready(function(){
        // $("#slctModelo").prop('disabled', true);
         $("#slctMarca").change(function(){
                 console.log($('#slctMarca').val());
-                $.get('<?php /* echo base_url('index.php/cAutos/getModelosId/') */?>' + $('#slctMarca').val(), function(datos, status){
+                $.get('<?php echo base_url('index.php/cAutos/getModelosId/')?>' + $('#slctMarca').val(), function(datos, status){
                         let data = JSON.parse(datos);   
                         data.forEach(element => {
-                            alert(data);
+                            console.log(data);
                         }); 
                 });
         });
     });    
-</script> -->
+</script>
 
 <?php $this->load->view('Global/footer')?>
 
