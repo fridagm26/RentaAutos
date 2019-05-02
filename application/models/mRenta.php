@@ -14,7 +14,7 @@ class mRenta extends CI_Model {
         return $this->db->where('status',1)->get('modulos')->result();
         
     }
-    public function guardar($param,$param2){
+    public function guardar($param){
         
     }
 }
