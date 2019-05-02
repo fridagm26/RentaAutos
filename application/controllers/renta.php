@@ -5,7 +5,8 @@ class Renta extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('Modulos_model');
+        $this->load->model('mRenta');
+        $this->load->model('Modulos_model');
 	}
 	public function index()
 	{
@@ -14,7 +15,10 @@ class Renta extends CI_Controller {
 	}
 	
 	public function guardar(){
+<<<<<<< HEAD
 
+=======
+>>>>>>> 729265ea13e9ab0dbeb21d6300a3fc4d3d402f1e
 		$param[''] = $this->input->post('disp');
 		$param[''] = $this->input->post('txtFI');
 		$param[''] = $this->input->post('txtFF');
