@@ -24,7 +24,7 @@ class CAutos extends CI_Controller {
     public function altaAutos(){
         $parametro['year'] = $this->input->post('txtYear');
         $parametro['color'] = $this->input->post('txtColor');
-        $parametro['precioDia'] = 1000;
+        $parametro['precioDia'] = $this->input->post('txtPrecioDia');
         $parametro['placas'] = $this->input->post('txtPlacas');
         $parametro['idModelo'] = 1;
         $parametro['idMarca'] = 1;
