@@ -8,7 +8,7 @@
        	<div class="row">
        		<div class="clear">
                 <body>
-                    <form action="http://localhost/RentaAutos/index.php/Inicio/guardar" method="POST">
+                    <form action="http://localhost/RentaAutos/index.php/renta/guardar" method="POST">
                         <h3>Formulario de Renta</h3>
                         <label>Disponibilidad:<br></label>
                         <input type="int" name="disp" placeholder=""><br/> 

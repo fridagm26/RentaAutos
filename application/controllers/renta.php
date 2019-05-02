@@ -1,11 +1,12 @@
 <?php
 /*defined('BASEPATH') OR exit('No direct script access allowed');*/
 
-class Inicio extends CI_Controller {
+class Renta extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('Modulos_model');
+        $this->load->model('mRenta');
+        $this->load->model('Modulos_model');
 	}
 	public function index()
 	{
@@ -13,7 +14,6 @@ class Inicio extends CI_Controller {
 		$this->load->view('renta/rentaAutos',$data);
 	}
 	public function guardar(){
-        if()
 		$param[''] = $this->input->post('disp');
 		$param[''] = $this->input->post('txtFI');
 		$param[''] = $this->input->post('txtFF');
