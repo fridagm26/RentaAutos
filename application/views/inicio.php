@@ -16,13 +16,7 @@
        			<br>
        			<br>
        			<br>
-       		</div>
-<<<<<<< HEAD
-=======
-            <h1>Aqui vamos a dar de alta a un carro</h1>
-            <a href="<?php echo base_url(); ?>index.php/cAutos">Link de eso</a>
->>>>>>> 2eb143526094a079d7f8d02cd0404a6c7243b047
-            
+       		</div>            
          </div>
        </section>
   </div>
