@@ -52,13 +52,27 @@ class MAutos extends CI_Model{
         return $resultado;
     }
 
-    public function eliminarAutos(){
+    /* public function eliminarAutos(){
         //UPDATE autos SET autos.status = 0 WHERE idAuto = 15;
         $eliminar = [
             'status' => 0,
         ];
        $this->db->update('autos', $eliminar);
-    }
+    } */
 
-    
+    public function eliminarAuto($idAuto){
+        $this->db->set(array(
+            'status'=>0
+        ));
+        $this->db->where('idAuto', $idAuto);
+
+        if($this->db->update("autos"))
+            { 
+                return 1; 
+            } 
+            else 
+            { 
+                return 0;
+            }
+    }
 }

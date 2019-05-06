@@ -27,7 +27,7 @@
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 </head>
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini">
 
 <div class="wrapper">
 

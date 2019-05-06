@@ -19,9 +19,27 @@
         margin-bottom: 1em;
     }
 
+    #tAutos th{
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #tAutos, #trAutos th{
+        text-align: center;
+    }
+
+    #trAutos th{
+        font-size: 16px;
+    }
+
+    #tAutos th:hover{
+        background-color: #428BCA;
+        color: white;
+    }
+
   </style>
 
-<div class="modal fade" id="exampleModal">
+<div class="modal fade" id="confirmacionModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -35,7 +53,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-            <button type="button" class="btn btn-primary">SI</button>
+            <button type="button" class="btn btn-primary" onclick="eliminarAuto()">SI</button>
         </div>
         </div>
     </div>
@@ -102,12 +120,13 @@
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">
-                                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="btnGuardar">Guardar</button>
                             </div>
                         </div>
                         
                     </form> <!-- /form -->
-                    <div class="form-group">
+
+                    <!-- <div class="form-group">
                     
                         <label for="exampleFormControlSelect1">Autos Disponibles</label>
                         
@@ -115,7 +134,41 @@
 
 
                         </select>
-                    </div>
+                    </div> -->
+
+                    <!-- Empieza la tabla -->
+                    <div id="mAutos">
+                        <table class="table" id="muestraAutos">
+                            <thead>
+                            <tr id="trAutos">
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Placas</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Color</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tAutos">
+                            <!-- <tr id="tModelos"> -->
+                                <!-- <th scope="row" id="tModelos"></th>  -->
+                            <!--    <td>Mark</td>
+                                <td>Otto</td> -->
+                            </tr>
+                            <tr>
+                            <!--  <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td> -->
+                            </tr>
+                            <tr>
+                                <!-- <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+                    <!-- termina la tabla -->
+
                 </div> <!-- ./container -->
        		</div>
          </div>
@@ -125,10 +178,53 @@
 </div>
 
 <script>
+
+    var idAutoEliminar = 0;
+
+    function confirmarEliminacionAuto(idAuto){
+    idAutoEliminar = idAuto;
+    $("#confirmacionModal").modal('show');
+    }
+
+    function eliminarAuto(){
+    $("#confirmacionModal").modal('hide');
+    $.ajax({
+        url: 'cAutos/eliminarAuto', 
+        type: "post",
+        data: {
+            idAuto: idAutoEliminar
+        },
+        success: function( response ) {
+            if( response == 1 ) $("tr[data-auto='"+idAutoEliminar+"']").remove();
+            else alert("Hubo un error, no se pudo eliminar");
+        }
+    });
+    }
+
     $(document).ready(function(){
         $("#slctModelo").prop('disabled', true);
+        $("#Year").prop('disabled', true);
+        $("#Color").prop('disabled', true);
+        $("#PrecioDia").prop('disabled', true);
+        $("#Placas").prop('disabled', true);
+        $("#btnGuardar").prop('disabled', true);
         $('#slctMarca').change(function(){
             $("#slctModelo").prop('disabled', false);
+        });
+        $('#slctModelo').change(function(){
+            $("#Year").prop('disabled', false);
+        });
+        $('#Year').change(function(){
+            $("#Color").prop('disabled', false);
+        });
+        $('#Color').change(function(){
+            $("#PrecioDia").prop('disabled', false);
+        });
+        $('#PrecioDia').change(function(){
+            $("#Placas").prop('disabled', false);
+        });
+        $('#Placas').change(function(){
+            $("#btnGuardar").prop('disabled', false);
         });
 
         $("#slctMarca").change(function(){
@@ -157,10 +253,21 @@
             success: function(response){
                 console.log(response);
                 response = JSON.parse(response);
-                $.each(response, function(index, value){
+                /*$.each(response, function(index, value){
                     $("#ListaAutos").append(
-                        "<option>"+  value.nombreMarca+ " | " + value.nombreModelo + " | " + value.color + " | " + value.year + "</option>"
-                    );
+                        "<option value=" + value.idAuto + " onclick='confirmarEliminacionAuto("+value.idAuto+")'>" +  value.nombreMarca+ " | " + value.nombreModelo + " | " + value.color + " | " + value.year + " | " + value.idAuto +"</option>"
+                    ); 
+                }); */
+
+                $.each(response, function( index, value){
+                    $("#tAutos").append(
+                    "<tr data-auto='"+value.idAuto+"'>"+
+                        "<th onclick='confirmarEliminacionAuto("+value.idAuto+")'>"+value.nombreMarca+"</th>"+
+                        "<td>"+value.nombreModelo+"</td>"+
+                        "<td>"+value.placas+"</td>"+
+                        "<td>"+value.year+"</td>"+
+                        "<td>"+value.color+"</td>"+
+                    "</tr>")
                 });
             }
         });
@@ -171,10 +278,6 @@
     });
 
 </script>
-
-
-
-
 
 <?php $this->load->view('Global/footer')?>
 
