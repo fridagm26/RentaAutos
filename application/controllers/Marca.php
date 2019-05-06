@@ -24,7 +24,8 @@ class Marca extends CI_Controller {
         echo json_encode($this->Marca_model->getMarca());
     }	
 
-  /*   public function ejemplo(){
-        $this->load->view('vAutos');
-    } */
+    public function eliminarMarca(){
+        $idMarca = $this->input->post('idMarca');
+        echo $this->Marca_model->eliminarMarca($idMarca);
+    }
 }

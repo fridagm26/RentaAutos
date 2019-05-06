@@ -20,4 +20,20 @@ class Marca_model extends CI_Model {
         return $this->db->where('status',1)->get('marca')->result();
     }
 
+    public function eliminarMarca($idMarca){
+        $this->db->set(array(
+            'status'=>0
+        ));
+        $this->db->where('idMarca', $idMarca);
+
+        if($this->db->update("marca"))
+            { 
+                return 1; 
+            } 
+            else 
+            { 
+                return 0;
+            }
+    }
+
 }

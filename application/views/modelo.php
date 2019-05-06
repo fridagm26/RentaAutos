@@ -23,6 +23,24 @@
       margin-right: 50px;
     }
 
+    #tModelos th{
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #tModelos, #trModelos th{
+        text-align: center;
+    }
+
+    #trModelos th{
+        font-size: 16px;
+    }
+
+    #tModelos th:hover{
+        background-color: #428BCA;
+        color: white;
+    }
+
   </style>
 
   <div class="modal fade" id="confirmacionModal">
@@ -80,7 +98,7 @@
                 </div> <!-- /.form-group -->
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="guardar">Guardar</button>
                     </div>
                 </div>
             </form> <!-- /form -->
@@ -89,7 +107,7 @@
             <div id="mModelos">
               <table class="table" id="muestraModelos">
                 <thead>
-                  <tr>
+                  <tr id="trModelos">
                     <th scope="col">Modelos</th>
                     <th scope="col">Disponibles</th>
                     <th scope="col">Totales</th>
@@ -151,13 +169,26 @@ function eliminarModelo(){
 
 
   $(document).ready( function() {
+
     $('#nombreModelo').prop('disabled',true);
     $('#disponibilidad').prop('disabled',true);
     $('#totales').prop('disabled',true);
+    $('#guardar').prop('disabled',true);
+
     $('#marca').change(function(){
       $('#nombreModelo').prop('disabled',false);
+    });
+
+    $('#nombreModelo').change(function(){
       $('#disponibilidad').prop('disabled',false);
+    });
+
+    $('#disponibilidad').change(function(){
       $('#totales').prop('disabled',false);
+    });
+
+    $('#totales').change(function(){
+      $('#guardar').prop('disabled',false);
     });
 
     $.ajax({
