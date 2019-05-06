@@ -40,4 +40,9 @@ class CAutos extends CI_Controller {
     public function mostrarAutos(){
         echo json_encode($this->mAutos->getAutos());
     }
+
+    public function eliminarAuto(){
+        $idAuto = $this->input->post('idAuto');
+        echo $this->mAutos->eliminarAuto($idAuto);
+    }
 }
