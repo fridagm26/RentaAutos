@@ -7,7 +7,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <!-- Content Wrapper. Contains page content -->
   <style>
-    *[role="form"] {
+    *[role="form"] , #ListaAutos{
         max-width: 530px;
         padding: 15px;
         margin: 0 auto;
@@ -21,6 +21,26 @@
 
   </style>
 
+<div class="modal fade" id="exampleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">ELIMINAR UN AUTO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Desea eliminar el auto?<br>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+            <button type="button" class="btn btn-primary">SI</button>
+        </div>
+        </div>
+    </div>
+</div>
+
   <div class="content-wrapper">
        <section class="content">
        	<div class="row">
@@ -31,8 +51,8 @@
                         <div class="form-group">
                             <label for="slctMarca" class="col-sm-3 control-label">Marca</label>
                             <div class="col-sm-9">
-                                <select id="slctMarca" class="form-control">
-                                <option value="">Selecciona una marca</option>
+                                <select id="slctMarca" class="form-control" name="slctMarca">
+                                <option value="" disabled selected>Selecciona una marca</option>
                                                 <?php
                                                     //Aqui se muestran todas las marcas disponibles en la base de datos 
                                                     foreach($marcas->result() as $marca){
@@ -46,14 +66,9 @@
                         <div class="form-group">
                             <label for="slctModelo" class="col-sm-3 control-label">Modelo</label>
                             <div class="col-sm-9">
-                                <select id="slctModelo" class="form-control">
-                                <option value="">Selecciona una modelo</option>
-                                                <?php
-                                                        //Aqui se muestran todos los modelos dependiendo de la marca seleccionada anteriormente
-                                                        foreach($modelos->result() as $modelo){
-                                                            echo "<option value=".$modelo->idModelo.">".$modelo->nombreModelo."</option>";
-                                                        }
-                                                    ?>
+                                <select id="slctModelo" class="form-control" name="slctModelo">
+                                <option value="" disabled selected >Selecciona una modelo</option>
+                                                
                                 </select>
                             </div>
                         </div> <!-- /.form-group -->
@@ -92,6 +107,15 @@
                         </div>
                         
                     </form> <!-- /form -->
+                    <div class="form-group">
+                    
+                        <label for="exampleFormControlSelect1">Autos Disponibles</label>
+                        
+                        <select  multiple class="form-control" id="ListaAutos">
+
+
+                        </select>
+                    </div>
                 </div> <!-- ./container -->
        		</div>
          </div>
@@ -111,13 +135,44 @@
                 console.log($('#slctMarca').val());
                 $.get('<?php echo base_url('index.php/cAutos/getModelosId/')?>' + $('#slctMarca').val(), function(datos, status){
                         let data = JSON.parse(datos);   
-                        data.forEach(element => {
+                        /* data.forEach(element => {
                             console.log(data);
-                        }); 
+                            $(".marcas-container").append(
+                                "<div>"+"<span>"+status.nombreModelo+"</span>"+"</div>"
+                            );  
+                        });  */
+                        $.each(data, function(index, value){
+                            $("#slctModelo").append(
+                                "<option value="+value.idModelo+">"+ value.nombreModelo + "</option>"
+                            );
+                        });
+
                 });
         });
     });    
+
+    $(document).ready(function(){
+        $.ajax({
+            url: 'cAutos/mostrarAutos',
+            success: function(response){
+                console.log(response);
+                response = JSON.parse(response);
+                $.each(response, function(index, value){
+                    $("#ListaAutos").append(
+                        "<option>"+  value.nombreMarca+ " | " + value.nombreModelo + " | " + value.color + " | " + value.year + "</option>"
+                    );
+                });
+            }
+        });
+    });
+
+    $('#ListaAutos').on("click","option",function(){
+        $("#exampleModal").modal('show');
+    });
+
 </script>
+
+
 
 
 
