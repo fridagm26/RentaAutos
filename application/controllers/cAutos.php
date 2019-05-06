@@ -21,16 +21,23 @@ class CAutos extends CI_Controller {
        echo json_encode($this->mAutos->getModelosId($id)->result());
     }
 
-    public function altaAutos(){
+    public function altaAutos(){ 
         $parametro['year'] = $this->input->post('txtYear');
         $parametro['color'] = $this->input->post('txtColor');
-        $parametro['precioDia'] = 1000;
+        $parametro['precioDia'] = $this->input->post('txtPrecioDia');
         $parametro['placas'] = $this->input->post('txtPlacas');
-        $parametro['idModelo'] = 1;
-        $parametro['idMarca'] = 1;
+        $parametro['idModelo'] = $this->input->post('slctModelo');
+        $parametro['idMarca'] = $this->input->post('slctMarca');
         $parametro['status'] = 1;
 
         $this->mAutos->altaAutos($parametro);
     }
-	
+    
+    public function mostrarModelos(){
+        echo json_encode($this->mAutos->getModelo());
+    }
+
+    public function mostrarAutos(){
+        echo json_encode($this->mAutos->getAutos());
+    }
 }

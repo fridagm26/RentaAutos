@@ -16,7 +16,6 @@
           <?php foreach($modulos as $modulo){ ?>
           <li><a href="<?php echo base_url($modulo->ruta);?>"><i class="fa fa-file"></i><?php echo $modulo->nombre ?></a></li>
           <?php } ?>
-          <li><a href="<?php echo base_url();?>index.php/Inicio/rentaAutos"><i class="fa fa-file"></i> <span>Renta</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

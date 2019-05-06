@@ -37,5 +37,28 @@ class MAutos extends CI_Model{
         $this->db->insert('autos', $campos);
     }
 
+    public function getModelo(){
+        return $this->db->where('status',1)->get('modelos')->result();
+    }
+
+    public function getAutos(){
+        $this->db->select('*');
+        $this->db->from('autos');
+        $this->db->join('modelos', 'autos.idModelo = modelos.idModelo');
+        $this->db->join('marca', 'autos.idMarca = marca.idMarca');
+        $this->db->where('autos.status', 1);
+        $resultado = $this->db->get()->result();
+
+        return $resultado;
+    }
+
+    public function eliminarAutos(){
+        //UPDATE autos SET autos.status = 0 WHERE idAuto = 15;
+        $eliminar = [
+            'status' => 0,
+        ];
+       $this->db->update('autos', $eliminar);
+    }
+
     
 }
