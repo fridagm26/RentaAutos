@@ -7,6 +7,7 @@ class CAutos extends CI_Controller {
 		parent::__construct();
         $this->load->model('mAutos');
         $this->load->model('Modulos_model');
+        
     }
     
     public function index(){

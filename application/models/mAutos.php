@@ -35,6 +35,7 @@ class MAutos extends CI_Model{
         );
 
         $this->db->insert('autos', $campos);
+        redirect('cAutos', 'refresh');
     }
 
     public function getModelo(){
