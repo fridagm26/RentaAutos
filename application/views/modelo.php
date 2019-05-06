@@ -35,7 +35,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Desea eliminar el modelo?
+                ¿Desea eliminar el modelo??
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
