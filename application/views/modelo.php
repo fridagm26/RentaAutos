@@ -18,13 +18,32 @@
         margin-bottom: 1em;
     }
 
-    #muestraModelos{
+    #mModelos{
       margin-top: 20px;
       margin-right: 50px;
     }
 
   </style>
 
+  <div class="modal fade" id="confirmacionModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Modelo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea eliminar el modelo?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="eliminarModelo()">Si</button>
+            </div>
+            </div>
+        </div>
+    </div>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
        <section class="content">
@@ -67,33 +86,30 @@
             </form> <!-- /form -->
 
             <!-- Empieza la tabla -->
-            <div id="muestraModelos">
+            <div id="mModelos">
               <table class="table" id="muestraModelos">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
+                    <th scope="col">Modelos</th>
+                    <th scope="col">Disponibles</th>
+                    <th scope="col">Totales</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tbody id="tModelos">
+                  <!-- <tr id="tModelos"> -->
+                    <!-- <th scope="row" id="tModelos"></th>  -->
+                 <!--    <td>Mark</td>
+                    <td>Otto</td> -->
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                   <!--  <th scope="row">2</th>
                     <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>Thornton</td> -->
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
+                    <!-- <th scope="row">3</th>
                     <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td>the Bird</td> -->
                   </tr>
                 </tbody>
               </table>
@@ -110,6 +126,30 @@
 <?php $this->load->view('Global/footer')?>
 
 <script>
+
+var idModeloEliminar = 0;
+
+function confirmarEliminacionModelo(idModelo){
+  idModeloEliminar = idModelo;
+  $("#confirmacionModal").modal('show');
+}
+
+function eliminarModelo(){
+  $("#confirmacionModal").modal('hide');
+  $.ajax({
+    url: 'Modelo/eliminarModelo', 
+    type: "post",
+    data: {
+        idModelo: idModeloEliminar
+    },
+    success: function( response ) {
+        if( response == 1 ) $("tr[data-modelo='"+idModeloEliminar+"']").remove();
+        else alert("Hubo un error, no se pudo eliminar");
+    }
+   });
+}
+
+
   $(document).ready( function() {
     $('#nombreModelo').prop('disabled',true);
     $('#disponibilidad').prop('disabled',true);
@@ -130,6 +170,23 @@
             });
         }
     });
+
+    $.ajax({
+        url: 'Modelo/mostrarModelos', 
+        success: function( response ) {
+            console.log(response);
+            response = JSON.parse(response);
+            $.each(response, function( index, value){
+                $("#tModelos").append(
+                  "<tr data-modelo='"+value.idModelo+"'>"+
+                      "<th onclick='confirmarEliminacionModelo("+value.idModelo+")'>"+value.nombreModelo+"</th>"+
+                      "<td>"+value.disponibilidad+"</td>"+
+                      "<td>"+value.totales+"</td>"+
+                  "</tr>")
+            });
+        }
+    });
+
   });
 </script>
 

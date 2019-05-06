@@ -25,5 +25,13 @@ class Modelo extends CI_Controller {
         $data['idMarca'] = $this->input->post('idMarca');
         $this->Modelo_model->altaModelo($data);
     }
-	
+
+    public function mostrarModelos(){
+        echo json_encode($this->Modelo_model->getModelos());
+    }
+    
+    public function eliminarModelo(){
+        $idModelo = $this->input->post('idModelo');
+        echo $this->Modelo_model->eliminarModelo($idModelo);
+    }
 }

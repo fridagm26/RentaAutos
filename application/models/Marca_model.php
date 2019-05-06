@@ -19,4 +19,5 @@ class Marca_model extends CI_Model {
     public function getMarca(){
         return $this->db->where('status',1)->get('marca')->result();
     }
+
 }

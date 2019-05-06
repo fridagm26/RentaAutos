@@ -22,6 +22,9 @@ class Marca extends CI_Controller {
 
     public function mostrarMarca(){
         echo json_encode($this->Marca_model->getMarca());
-    }
-	
+    }	
+
+  /*   public function ejemplo(){
+        $this->load->view('vAutos');
+    } */
 }

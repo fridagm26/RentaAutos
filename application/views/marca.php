@@ -38,33 +38,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                Se van a agregar 2<br>
-                Estas seguro?
+                Desea eliminar la marca?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary">Si</button>
+                <button type="button" class="btn btn-primary" id="btnEliminar">Si</button>
             </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModal2">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    No se que poner<br>
-                    Jalas o no?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary">Si</button>
-                </div>
             </div>
         </div>
     </div>
@@ -126,7 +105,7 @@
                 response = JSON.parse(response);
                 $.each(response, function(index, value){
                     $("#marcas-guardadas").append(
-                        "<option>"+value.nombreMarca+"</option>"
+                        "<option value="+value.idMarca+">"+value.nombreMarca+"</option>"
                     );
                 });
             }

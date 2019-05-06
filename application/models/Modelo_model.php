@@ -25,4 +25,23 @@ class Modelo_model extends CI_Model {
         $this->db->insert('modelos',$modelo);
     }
 
+    public function getModelos(){
+        return $this->db->where('status',1)->get('modelos')->result();
+    }
+
+    public function eliminarModelo($idModelo){
+        $this->db->set(array(
+            'status'=>0
+        ));
+        $this->db->where('idModelo', $idModelo);
+
+        if($this->db->update("modelos"))
+            { 
+                return 1; 
+            } 
+            else 
+            { 
+                return 0;
+            }
+    }
 }
