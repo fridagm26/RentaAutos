@@ -11,23 +11,23 @@ class Renta extends CI_Controller {
 	public function index()
 	{
 		$data['modulos'] = $this->Modulos_model->getModulos();
+		$data['marcas'] = $this->mRenta->getMarcas();
+        $data['modelos'] = $this->mRenta->getModelos();
 		$this->load->view('renta/rentaAutos',$data);
 	}
 	
 	public function guardar(){
-        /*$data['modulos'] = $this->Modulos_model->getModulos();
-        $this->load->view('usuario',$data);*/
-		$param[''] = $this->input->post('disp');
+        $data['modulos'] = $this->Modulos_model->getModulos();
+        $this->load->view('usuario',$data);
+		$param[''] = $this->input->post('slctMarca');
+		$param[''] = $this->input->post('slctModelo');
+		$param[''] = $this->input->post('txtYear');
+		$param[''] = $this->input->post('txtColor');
+		$param[''] = $this->input->post('txtPrecioDia');
 		$param[''] = $this->input->post('txtFI');
 		$param[''] = $this->input->post('txtFF');
-		$param[''] = $this->input->post('txtsi');
-		$param[''] = $this->input->post('txtno');
-        $temp = $this->input->post('txtsi');
-        if($temp == "Si") {
-            $data['modulos'] = $this->Modulos_model->getModulos();
-            $this->load->view('usuario',$data);
-            $this->mRenta->guardar($param);
-        }else echo"<script>alert('Requiere una licencia vigente')</script>";
+		
+		
 
 	}
 }

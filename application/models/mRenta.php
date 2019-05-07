@@ -14,6 +14,20 @@ class mRenta extends CI_Model {
         return $this->db->where('status',1)->get('modulos')->result();
         
     }
+    public function getMarcas(){
+        $marcas = $this->db->select('*')->from('marca')->where('status',1)->get();
+        return $marcas;
+   }
+
+    public function getModelos(){
+        $modelos = $this->db->select('*')->from('modelos')->where('status', 1)->get();
+        return $modelos;
+    }
+
+    public function getModelosId($id){
+        $modelos = $this->db->select('*')->from('modelos')->where('status', 1)->where('idMarca', $id)->get();
+        return $modelos;
+    }
     public function guardar($param){
         
     }
