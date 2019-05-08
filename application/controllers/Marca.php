@@ -17,7 +17,7 @@ class Marca extends CI_Controller {
     public function guardarMarca(){
         $nombre = $this->input->post('txtNombreMarca');
         $this->Marca_model->altaMarca($nombre);
-        $this->load->view('marca');
+        $this->load->view('inicio');
     }
 
     public function mostrarMarca(){

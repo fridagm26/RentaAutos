@@ -14,6 +14,7 @@ class Marca_model extends CI_Model {
     public function altaMarca($nombre){
         $data= array('nombreMarca'=>$nombre);
         $this->db->insert('marca',$data);
+        redirect('Marca','refresh');
     }
 
     public function getMarca(){

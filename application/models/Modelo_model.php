@@ -23,6 +23,7 @@ class Modelo_model extends CI_Model {
             'idMarca'=>$data['idMarca']
         );
         $this->db->insert('modelos',$modelo);
+        redirect('Modelo','refresh');
     }
 
     public function getModelos(){
