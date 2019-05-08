@@ -28,7 +28,24 @@ class mRenta extends CI_Model {
         $modelos = $this->db->select('*')->from('modelos')->where('status', 1)->where('idMarca', $id)->get();
         return $modelos;
     }
+
     public function guardar($param){
-        
+
+    }
+
+    public function getAutosChidos($id){
+        $modelos = $this->db->select('*')->from('autos')
+        ->join('modelos', 'autos.idModelo = modelos.idModelo')
+        ->join('marca', 'autos.idMarca = marca.idMarca')
+        ->where('autos.idModelo', $id)->get();
+        return $modelos;
+    }
+
+    public function getInfoAuto($id){
+        $modelos = $this->db->select('*')->from('autos')
+        ->join('modelos', 'autos.idModelo = modelos.idModelo')
+        ->join('marca', 'autos.idMarca = marca.idMarca')
+        ->where('autos.idAuto', $id)->get();
+        return $modelos;
     }
 }
