@@ -31,7 +31,7 @@
                     <form action="http://localhost/RentaAutos/index.php/renta/guardar" method="POST" class="form-horizontal" role="form">
                       <h2>Formulario de renta</h2>
                         <div class="form-group">
-                            <label for="slctMarca" class="col-sm-3 control-label">Marca</label>
+                            <label for="slctMarca" class="col-sm-3 control-label">Marca:</label>
                             <div class="col-sm-9">
                                 <select id="slctMarca" class="form-control">
                                 <option value="">Selecciona una marca</option>
