@@ -81,9 +81,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="PrecioDia" class="col-sm-3 control-label">Precio x Dia</label>
+                            <label for="" class="col-sm-3 control-label">Precio x Dia</label>
                             <div class="col-sm-9">
-                                <input type="double" id="PrecioDia" placeholder="Ingrese el precio por dia" class="form-control" 
+                                <input type="text" id="PrecioDia" placeholder="Ingrese el precio por dia" class="form-control" 
                                   autofocus name="txtPrecioDia" value="">
                             </div>
                         </div>
@@ -103,16 +103,14 @@
                         <div class="form-group">
                           <div class="col-sm-9 col-sm-offset-3">
                             <button 
-                                    type="button" href="javascript:;" onclick="fecha($('#FF').val(),$('#FI').val();
-                                    return false;" class="btn btn-success btn-sm">Calcular total
+                                    type="button" onclick="calcularTotal()" class="btn btn-success btn-sm">Calcular total
                             </button>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="total" class="col-sm-3 control-label">Total:</label>
                           <div class="col-sm-9">
-                            <input type="double" id="total" class="form-control" autofocus>
-                            <span id="interval">0</span>
+                            <input type="text" id="total" class="form-control" autofocus>
                           </div>
                         </div>
                         </form>
@@ -130,6 +128,44 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <script>
+
+  var fecha1 = new Date();
+  var fecha2 = new Date();
+
+  $('#FI').change(function(){
+    fechaFI = new Date(document.getElementById("FI").value);
+    year = fechaFI.getFullYear();
+    month = fechaFI.getMonth();
+    day = fechaFI.getDate()+1;
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    fecha1.setFullYear(year, month, day);
+    console.log(fecha1);
+  });
+
+  $('#FF').change(function(){
+    fechaFF = new Date(document.getElementById("FF").value);
+    year = fechaFF.getFullYear();
+    month = fechaFF.getMonth();
+    day = fechaFF.getDate()+1;
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    fecha2.setFullYear(year, month, day);
+    console.log(fecha2);
+  });
+
+  function calcularTotal(){
+    total = Math.round((fecha2-fecha1)/(1000*60*60*24));
+    console.log(total);
+    precioDia = document.getElementById("PrecioDia").value;
+    console.log(precioDia);
+    costoTotal = precioDia * total;
+    console.log(costoTotal);
+    document.getElementById("total").value = costoTotal;
+  }
+
 
     $(document).ready(function(){
         $("#PrecioDia").prop('disabled', true);
@@ -178,24 +214,6 @@
                 });
         });
     }); 
-
-  function fecha(fechaF,fechaI){
-    var parametros = {
-      "fechaF" : fechaF,
-      "fechaI" :fechaI
-      };
-      $.ajax({
-        data : parametros,
-        url : 'renta/calcularFecha',
-        type : 'post',
-        beforeSend : function(){
-            $("#interval").html("Procesando...");
-        },
-        success: function(response){
-            $("#interval").html(response);
-        }
-      });
-  }
 </script>
 <?php $this->load->view('Global/footer')?>
 
