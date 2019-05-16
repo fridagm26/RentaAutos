@@ -26,36 +26,25 @@
        <section class="content">
        	<div class="row">
        		<div class="clear">
-                    <form class="form-horizontal" role="form">
+            <div class="container">
+                    <form action="http://localhost/RentaAutos/index.php/cUsuario/usuario" method="POST" class="form-horizontal" role="form">
                         <h2>Usuario</h2>
-                        <?php
-                              /* $date1 = new DateTime("2019-05-25");
-                              $date2 = new DateTime("2019-05-10"); */
-                              /* $diff = $_POST['txtFF']->diff($_POST['txtFI']);
-                              echo $diff->days . ' days '; */
-                              /* $interval = date_diff($_POST['txtFF'], $_POST['txtFI']);
-                              print_r( $interval ); */
-                              /* $today = new DateTime();
-                              $date = DateTime::createFromFormat('Y-m-d', $rowSelectMyAgend['']);
-                              $diff = $today->diff($date);
-                              print_r($diff->format('%a días')); */
-                            ?>
                         <div class="form-group">
                           <label for="txtnomb" class="col-sm-3 control-label">Nombre(s):</label>
                           <div class="col-sm-9">
-                            <input type="double" id="txtnomb" class="form-control" autofocus>
+                            <input type="double" id="txtnomb" class="form-control" autofocus name="txtnombre">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="txtap" class="col-sm-3 control-label">Apellido:</label>
                           <div class="col-sm-9">
-                            <input type="double" id="txtap" class="form-control" autofocus>
+                            <input type="double" id="txtap" class="form-control" autofocus name="txtapellidos">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="txtedad" class="col-sm-3 control-label">Edad:</label>
                           <div class="col-sm-9">
-                            <input type="double" id="txtedad" class="form-control" autofocus>
+                            <input type="double" id="txtedad" class="form-control" autofocus name="txtedad">
                           </div>
                         </div>
                         <div class="form-group">
@@ -71,6 +60,7 @@
                                 <input type="checkbox" name="txtno" value="No">No
                             </label>
                         </div>
+                        
                   </div>
                 </div> <!-- /.form-group -->
                 <div class="form-group">
@@ -79,6 +69,7 @@
                           </div>
                         </div>
                     </form>
+                    </div>  
        		</div>
             
             
@@ -87,6 +78,7 @@
   </div>
   <div class="control-sidebar-bg"></div>
 </div>
+
 <?php $this->load->view('Global/footer')?>
 
 <script src="<?php echo base_url('assets/js/header.js'); ?>"></script>

@@ -18,6 +18,30 @@
     margin-left: 5em;
     margin-bottom: 1em;
 }
+
+.mUsuarios{
+        max-width: 300px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+#tUsuario th{
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #tUsuario, #trUsuario th{
+        text-align: center;
+    }
+
+    #trUsuario th{
+        font-size: 9 px;
+    }
+
+    #tUsuario th:hover{
+        background-color: #428BCA;
+        color: white;
+    }
 </style>
 
 
@@ -28,8 +52,32 @@
        	<div class="row">
        		<div class="clear">
                   <div class="container">
-                    <form action="http://localhost/RentaAutos/index.php/renta/guardar" method="POST" class="form-horizontal" role="form">
+                  <!-- tabla -->
+                  <div id="mUsuarios">
+                        <table class="table" id="muestrausuarios">
+                            <thead>
+                            <tr id="trUsuario">
+                                <th scope="col">Nombre(s)</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Id</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tUsuario">
+                            </tbody>
+                        </table>
+                    </div>  
+                      <!-- tabla -->
+                    <form action="http://localhost/RentaAutos/index.php/renta/rentas" method="POST" class="form-horizontal" role="form">
                       <h2>Formulario de renta</h2>
+
+                      <div class="form-group">
+                          <label for="total" class="col-sm-3 control-label">id Usuario: </label>
+                          <div class="col-sm-9">
+                            <input type="text" name="idUsuario" id="idUsuario" class="form-control" autofocus value="">
+                          </div>
+                        </div>
+
                       <div class="form-group">
                             <label for="slctMarca" class="col-sm-3 control-label">Marca</label>
                             <div class="col-sm-9">
@@ -86,18 +134,17 @@
                                 <input type="text" id="PrecioDia" placeholder="Ingrese el precio por dia" class="form-control" 
                                   autofocus name="txtPrecioDia" value="">
                             </div>
-                        </div>
-                        <form action="http://localhost/RentaAutos/index.php/renta" method="POST">                                
+                        </div>                              
                         <div class="form-group">
                           <label for="txtFI" class="col-sm-3 control-label">Fecha de inicio:</label>
                           <div class="col-sm-9">
-                            <input type="date" id="FI" class="form-control">
+                            <input type="date" name="txtFI" id="FI" class="form-control">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="txtFF" class="col-sm-3 control-label">Fecha de fin:</label>
                           <div class="col-sm-9">
-                            <input type="date" id="FF" class="form-control">
+                            <input type="date" name="txtFF" id="FF" class="form-control">
                           </div>
                         </div>
                         <div class="form-group">
@@ -110,10 +157,9 @@
                         <div class="form-group">
                           <label for="total" class="col-sm-3 control-label">Total:</label>
                           <div class="col-sm-9">
-                            <input type="text" id="total" class="form-control" autofocus>
+                            <input type="text" name="txttotal" id="total" class="form-control" autofocus>
                           </div>
                         </div>
-                        </form>
                         <div class="form-group">
                           <div class="col-sm-9 col-sm-offset-3">
                             <button type="submit" class="btn btn-primary btn-block">Guardar</button>
@@ -214,6 +260,52 @@
                 });
         });
     }); 
+
+    //yardiel
+    var temp = 0;
+    var temp2 = null;
+    function idUsuario(idUsuario){
+      temp = idUsuario;
+      document.getElementById("idUsuario").value = temp;
+    }
+
+    $(document).ready(function(){
+        $("#slctModelo").change(function(){
+                console.log($('#slctModelo').val());
+                $.get('<?php echo base_url('index.php/renta/actdisp/')?>' + $('#slctModelo').val(), function(datos, status){
+                        let data = JSON.parse(datos);   
+                        $.each(data, function(index, value){
+                            $("#slctAuto").append(
+                                "<option value="+value.idAuto+">"+ value.nombreModelo + " | " + value.color + "</option>"
+                            );
+                        });
+
+                });
+        });
+    });
+
+    $(document).ready(function(){
+        $.ajax({
+            url: 'renta/mostrarUsuarios',
+            success: function(response){
+                console.log(response);
+                response = JSON.parse(response);
+                $.each(response, function( index, value){
+                    $("#tUsuario").append(
+                    "<tr data-usuario='"+value.idUsuario+"'>"+
+                    "<th onclick='idUsuario("+value.idUsuario+")'>"+value.nombre+"</th>"+
+                        "<td>"+value.apellidos+"</td>"+
+                        "<td>"+value.edad+"</td>"+
+                        "<td>"+value.idUsuario+"</td>"+
+                    "</tr>")
+                });
+            }
+        });
+    });
+
+/*     $('#ListaAutos').on("click","option",function(){
+        $("#exampleModal").modal('show');
+    }); */
 </script>
 <?php $this->load->view('Global/footer')?>
 

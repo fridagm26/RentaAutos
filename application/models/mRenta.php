@@ -29,9 +29,19 @@ class mRenta extends CI_Model {
         return $modelos;
     }
 
-    public function guardar($param){
 
+    public function renta($param){
+        $campos = array(
+            'fechainicio' => $param['fechainicio'],
+            'fechafin' => $param['fechafin'],
+            'total' => $param['total'],
+            'idUsuario' => $param['idUsuario']
+            
+        );
+        $this->db->insert('rentas', $campos);
+        redirect('renta', 'refresh');
     }
+
 
     public function getAutosChidos($id){
         $modelos = $this->db->select('*')->from('autos')
@@ -47,5 +57,27 @@ class mRenta extends CI_Model {
         ->join('marca', 'autos.idMarca = marca.idMarca')
         ->where('autos.idAuto', $id)->get();
         return $modelos;
+    }
+
+    public function getUsuarios(){
+        $usuarios = $this->db->select('*')->from('usuarios')->get()->result();
+        /* $this->db->join('marca', 'autos.idMarca = marca.idMarca'); */
+        /* $resultado = $this->db->get()->result(); */
+        return $usuarios;
+    }
+
+    public function disponibilidad($id){
+        $this->db->set(array(
+            'status'=>0
+        ));
+        $this->db->where('idModelo', $id);
+        if($this->db->update("modelos"))
+            { 
+                return 1; 
+            } 
+            else 
+            { 
+                return 0;
+            }
     }
 }

@@ -16,16 +16,14 @@ class Renta extends CI_Controller {
 		$this->load->view('rentaAutos',$data);
 	}
 	
-	public function guardar(){
-        $data['modulos'] = $this->Modulos_model->getModulos();
-        $this->load->view('usuario',$data);
-		$param[''] = $this->input->post('slctMarca');
-		$param[''] = $this->input->post('slctModelo');
-		$param[''] = $this->input->post('txtYear');
-		$param[''] = $this->input->post('txtColor');
-		$param[''] = $this->input->post('txtPrecioDia');
-		$param[''] = $this->input->post('txtFI');
-		$param[''] = $this->input->post('txtFF');
+	public function rentas(){
+		$param['fechainicio'] = $this->input->post('txtFI');
+		$param['fechafin'] = $this->input->post('txtFF');
+		$param['total'] = $this->input->post('txttotal');
+		$param['idUsuario'] = $this->input->post('idUsuario');
+		$modelo = $this->input->post('slctModelo');
+        $this->mRenta->disponibilidad($modelo);
+		$this->mRenta->renta($param);
 	}
 
 	public function calcularFecha($date1, $date2){
@@ -34,6 +32,14 @@ class Renta extends CI_Controller {
 		$diff = $date1->diff($date2);
 		// will output 2 days
 		echo $diff->days . ' days ';
+	}
+
+	public function us(){
+		$param ['nombre'] = $this->input->post('txtnombre');
+		$param ['apellidos'] = $this->input->post('txtapellidos');
+		$param ['edad'] = $this->input->post('txtedad');
+
+		$this->mRenta->usu($param);
 	}
 
 	public function getModelosId($id){
@@ -49,4 +55,13 @@ class Renta extends CI_Controller {
 	public function getAutosId($id){
 		echo json_encode($this->mRenta->getInfoAuto($id)->result());
 	}
+
+	public function mostrarUsuarios(){
+        echo json_encode($this->mRenta->getUsuarios());
+	}
+
+	public function actdisp($id){
+		/* $auto = $this->input->post('slctModelo'); */
+       	echo $this->mRenta->disponibilidad($id);
+    }
 }
