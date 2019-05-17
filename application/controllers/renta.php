@@ -25,10 +25,10 @@ class Renta extends CI_Controller {
 
 		if($temp == 'Si' && $temp2 >= 18){
 			$this->mRenta->usuario($param);
-			/* $data['modulos'] = $this->Modulos_model->getModulos();
+			$data['modulos'] = $this->Modulos_model->getModulos();
 			$data['marcas'] = $this->mRenta->getMarcas();
 			$data['modelos'] = $this->mRenta->getModelos();
-			$this->load->view('rentaAutos',$data); */
+			/* $this->load->view('rentaAutos',$data); */
 		}else {echo "<script>
                 alert('Se requiere licencia vigente y ser mayor de edad');
                 window.location= 'url.php'
