@@ -14,7 +14,7 @@ class cUsuario extends CI_Controller {
 		$this->load->view('usuario',$data);
 	}
 
-    public function usuario(){
+    /* public function usuario(){
 		$param['nombre'] = $this->input->post('txtnombre');
 		$param['apellidos'] = $this->input->post('txtapellidos');
 		$param['edad'] = $this->input->post('txtedad');
@@ -33,6 +33,6 @@ class cUsuario extends CI_Controller {
 			 </script>";
 			}
 
-    }
+    } */
 
 }    

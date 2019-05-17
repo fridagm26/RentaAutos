@@ -16,6 +16,27 @@ class Renta extends CI_Controller {
 		$this->load->view('rentaAutos',$data);
 	}
 	
+	public function usuario(){
+		$param['nombre'] = $this->input->post('txtnombre');
+		$param['apellidos'] = $this->input->post('txtapellidos');
+		$param['edad'] = $this->input->post('txtedad');
+		$temp = $this->input->post('txtsi');
+		$temp2 = $this->input->post('txtedad');
+
+		if($temp == 'Si' && $temp2 >= 18){
+			$this->mRenta->usuario($param);
+			/* $data['modulos'] = $this->Modulos_model->getModulos();
+			$data['marcas'] = $this->mRenta->getMarcas();
+			$data['modelos'] = $this->mRenta->getModelos();
+			$this->load->view('rentaAutos',$data); */
+		}else {echo "<script>
+                alert('Se requiere licencia vigente y ser mayor de edad');
+                window.location= 'url.php'
+			 </script>";
+			}
+
+    }
+
 	public function rentas(){
 		$param['fechainicio'] = $this->input->post('txtFI');
 		$param['fechafin'] = $this->input->post('txtFF');
@@ -63,5 +84,7 @@ class Renta extends CI_Controller {
 	public function actdisp($id){
 		/* $auto = $this->input->post('slctModelo'); */
        	echo $this->mRenta->disponibilidad($id);
-    }
+	}
+	
+	
 }

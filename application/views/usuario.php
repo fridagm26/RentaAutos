@@ -27,7 +27,7 @@
        	<div class="row">
        		<div class="clear">
             <div class="container">
-                    <form action="http://localhost/RentaAutos/index.php/cUsuario/usuario" method="POST" class="form-horizontal" role="form">
+                    <form action="http://localhost/RentaAutos/index.php/renta/usuario" method="POST" class="form-horizontal" role="form">
                         <h2>Usuario</h2>
                         <div class="form-group">
                           <label for="txtnomb" class="col-sm-3 control-label">Nombre(s):</label>

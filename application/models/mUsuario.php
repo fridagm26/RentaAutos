@@ -6,7 +6,7 @@ class mUsuario extends CI_Model {
         parent::__construct();
     }
     
-    public function usuario($param){
+    /* public function usuario($param){
         $campos = array(
             'nombre' => $param['nombre'],
             'apellidos' => $param['apellidos'],
@@ -14,7 +14,7 @@ class mUsuario extends CI_Model {
         );
         $this->db->insert('usuarios', $campos);
         
-    }
+    } */
 
     public function getModulos(){
         return $this->db->where('status',1)->get('modulos')->result();

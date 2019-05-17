@@ -8,7 +8,15 @@ class mRenta extends CI_Model {
         parent::__construct();
 	}
 
-	
+	public function usuario($param){
+        $campos = array(
+            'nombre' => $param['nombre'],
+            'apellidos' => $param['apellidos'],
+            'edad' => $param['edad']
+        );
+        $this->db->insert('usuarios', $campos);
+        redirect('renta', 'refresh');
+    }
 	//ACABA VAN LAS FUNCIONES
 	public function getModulos(){
         return $this->db->where('status',1)->get('modulos')->result();
@@ -80,4 +88,5 @@ class mRenta extends CI_Model {
                 return 0;
             }
     }
+
 }
